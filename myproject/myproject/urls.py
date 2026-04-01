@@ -20,6 +20,8 @@ from django.contrib.auth import views as auth_views
 from core import views as core_views
 
 urlpatterns = [
+    path('moderator/', core_views.moderator_page, name='moderator_page'),
+    path('adminp/', core_views.admin_page, name='admin_page'),
     path('', core_views.home_view, name='home'),
 
     path('admin/', admin.site.urls),
