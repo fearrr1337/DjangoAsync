@@ -16,7 +16,13 @@ from .forms import ArticleForm
 from .policies import ArticlePolicy
 from .mixins import PolicyMixin
 
+from django.http import JsonResponse
+from .tasks import add
 
+
+def test(request):
+    task = add.delay(2, 3)
+    return JsonResponse({"task_id": task.id})
 
 @login_required
 @role_required(['moderator', 'admin'])

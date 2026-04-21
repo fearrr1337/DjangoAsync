@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_celery_results",
 ]
 
 AUTH_USER_MODEL = 'core.CustomUser'
@@ -72,6 +73,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
+
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 
 
 # Database
