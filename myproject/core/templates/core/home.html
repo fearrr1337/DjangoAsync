@@ -1,10 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1>Главная</h1>
+
 {% if user.is_authenticated %}
-  <h2>Привет, {{ user.username }}!</h2>
-  <form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit">Выйти</button>
-  </form>
+    <p>Привет, {{ user.username }}</p>
 {% else %}
-  <h2>Вы не вошли</h2>
-  <a href="{% url 'login' %}">Войти</a>
+    <p>Вы не вошли в систему</p>
 {% endif %}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h2>Мои статьи</h2>
+
+<a href="{% url 'article_create' %}">Создать</a>
+
+<ul>
+    {% for article in object_list %}
+        <li>
+            <a href="{% url 'article_detail' article.id %}">
+                {{ article.title }}
+            </a>
+        </li>
+    {% empty %}
+        <li>Нет статей</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
