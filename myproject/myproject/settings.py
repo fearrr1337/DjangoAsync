@@ -74,8 +74,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-CELERY_RESULT_BACKEND = "django-db"
+CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_TIMEZONE = 'Europe/Moscow'
+
+CELERY_BEAT_SCHEDULE = {
+    'delete-inactive-users-every-day': {
+        'task': 'core.tasks.delete_inactive_users',
+        'schedule': 86400.0,
+    },
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Database
@@ -125,7 +140,13 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'fearren01@mail.ru'          # ваш адрес
+EMAIL_HOST_PASSWORD = 'uvcnbrBmdg6cFaEzvPd1'       # пароль от почты (приложения)
+DEFAULT_FROM_EMAIL = 'fearren01@mail.ru'
 
 
 # Static files (CSS, JavaScript, Images)
